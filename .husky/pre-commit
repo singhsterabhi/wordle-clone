@@ -1,0 +1,17 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+#prittier formatting
+echo '\n📝 ... Looking for formatting issues and fixing!!!.'
+npm run precommit
+
+#checking linting issues
+echo '\n😎 💯 ... Alright... Formatting looks good to me... Checking linting issues. 😌'
+
+npm run lint || (
+    echo '\n🧑‍💻❌ Linting issues (eslint) ❌🧑‍💻\nPlease fix them to proceed.\n'
+    false;
+)
+
+# If everything passes... Now we can commit
+echo '\n✅ You win this time... I am committing this now. 🎉\n'
